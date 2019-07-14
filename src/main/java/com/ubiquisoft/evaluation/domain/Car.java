@@ -35,20 +35,6 @@ public class Car {
   }
 
   public Map<PartType, Integer> getMissingPartsMap() {
-    /*
-     * Return map of the part types missing.
-     *
-     * Each car requires one of each of the following types:
-     *      ENGINE, ELECTRICAL, FUEL_FILTER, OIL_FILTER
-     * and four of the type: TIRE
-     *
-     * Example: a car only missing three of the four tires should return a map like this:
-     *
-     *      {
-     *          "TIRE": 3
-     *      }
-     */
-
     if (getParts().isEmpty()) {
 
       return requiredCarPartsCount;

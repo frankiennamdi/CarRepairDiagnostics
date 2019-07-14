@@ -3,6 +3,24 @@
 Welcome to the Ubiquisoft Back End developer test.
 We anticiapte this will take approximately 20 minutes if tools are already installed locally.
 
+## Updated Documentation
+
+### Requirements
+* Java 8
+* Git
+* maven(included with wrapper)
+* Intellij
+
+### build
+
+` ./mvnw clean install`
+
+### run
+
+`java -cp target/CarRepairDiagnostics-1.0-SNAPSHOT.jar com.ubiquisoft.evaluation.CarDiagnosticEngine`
+
+
+
 ## Basic Instructions
 
 * Install Java 8
