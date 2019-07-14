@@ -84,13 +84,11 @@ public class CarDiagnosticEngine {
   public static void main(String[] args) throws JAXBException {
 
     // Build new Diagnostics Engine and execute on deserialized car object.
-
     CarDiagnosticEngine diagnosticEngine = new CarDiagnosticEngine();
 
     Car car = diagnosticEngine.loadCarFromXml("SampleCar.xml");
 
     diagnosticEngine.executeDiagnostics(car);
-
   }
 
   Car loadCarFromXml(String xmlFile) throws JAXBException {
@@ -100,7 +98,6 @@ public class CarDiagnosticEngine {
     // Verify resource was loaded properly
     if (xml == null) {
       System.err.println("An error occurred attempting to load " + xmlFile);
-
       System.exit(1);
     }
 
