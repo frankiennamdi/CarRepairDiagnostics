@@ -93,7 +93,7 @@ public class CarDiagnosticEngine {
 
   }
 
-  public Car loadCarFromXml(String xmlFile) throws JAXBException {
+  Car loadCarFromXml(String xmlFile) throws JAXBException {
     // Load classpath resource
     InputStream xml = ClassLoader.getSystemResourceAsStream(xmlFile);
 

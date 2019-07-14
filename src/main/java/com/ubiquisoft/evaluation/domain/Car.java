@@ -35,6 +35,7 @@ public class Car {
   }
 
   public Map<PartType, Integer> getMissingPartsMap() {
+
     if (getParts().isEmpty()) {
 
       return requiredCarPartsCount;
@@ -48,18 +49,19 @@ public class Car {
 
       for (Map.Entry<PartType, Integer> requirePartsEntry : requiredCarPartsCount.entrySet()) {
 
-        List<Part> currentTypeParts = currentCarParts.get(requirePartsEntry.getKey());
-        int requiredCount = requiredCarPartsCount.get(requirePartsEntry.getKey());
+        PartType currentPartType = requirePartsEntry.getKey();
+        List<Part> currentTypeParts = currentCarParts.get(currentPartType);
+        int requiredCount = requiredCarPartsCount.get(currentPartType);
 
-        if (currentTypeParts == null) {
+        if (currentTypeParts == null || currentTypeParts.isEmpty()) {
 
-          missingCarParts.put(requirePartsEntry.getKey(), requiredCount);
+          missingCarParts.put(currentPartType, requiredCount);
 
         } else {
 
           int currentCount = currentTypeParts.size();
           if (currentCount < requiredCount) {
-            missingCarParts.put(requirePartsEntry.getKey(), requiredCount - currentCount);
+            missingCarParts.put(currentPartType, requiredCount - currentCount);
           }
         }
       }

@@ -18,7 +18,9 @@ public class CarMissingIdentityTest {
     car.setMake("make");
     car.setModel("model");
     car.setYear("year");
+
     List<String> missingFields = car.getMissingIdentityFields();
+
     assertThat(missingFields.isEmpty(), is(true));
   }
 
@@ -27,7 +29,9 @@ public class CarMissingIdentityTest {
     Car car = new Car();
     car.setModel("model");
     car.setYear("year");
+
     List<String> missingFields = car.getMissingIdentityFields();
+
     assertThat(missingFields.isEmpty(), is(false));
     assertThat(missingFields, contains("make"));
   }
@@ -37,7 +41,9 @@ public class CarMissingIdentityTest {
     Car car = new Car();
     car.setMake("make");
     car.setYear("year");
+
     List<String> missingFields = car.getMissingIdentityFields();
+
     assertThat(missingFields.isEmpty(), is(false));
     assertThat(missingFields, contains("model"));
   }
@@ -47,15 +53,19 @@ public class CarMissingIdentityTest {
     Car car = new Car();
     car.setMake("make");
     car.setModel("model");
+
     List<String> missingFields = car.getMissingIdentityFields();
+
     assertThat(missingFields.isEmpty(), is(false));
     assertThat(missingFields, contains("year"));
   }
 
   @Test
-  public void testValidCarIdentity_withAllMissing() {
+  public void testValidCarIdentity_withAllMissingIdentity() {
     Car car = new Car();
+
     List<String> missingFields = car.getMissingIdentityFields();
+
     assertThat(missingFields.isEmpty(), is(false));
     assertThat(missingFields, containsInAnyOrder("make", "model", "year"));
   }

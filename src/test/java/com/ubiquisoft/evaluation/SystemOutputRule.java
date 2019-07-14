@@ -14,9 +14,7 @@ public class SystemOutputRule extends ExternalResource {
 
   private PrintStream previousErrorConsole;
 
-
   private ByteArrayOutputStream newOutputConsole;
-
 
   @Override
   protected void before() {
@@ -36,7 +34,7 @@ public class SystemOutputRule extends ExternalResource {
     System.out.println(newOutputConsole.toString());
   }
 
-  public List<String> getOutputStringLines() {
-    return new ArrayList<String>(Arrays.asList(newOutputConsole.toString().split("\n")));
+  List<String> getOutputStringLines() {
+    return new ArrayList<>(Arrays.asList(newOutputConsole.toString().split("\n")));
   }
 }

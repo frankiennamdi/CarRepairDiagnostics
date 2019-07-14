@@ -26,6 +26,7 @@ public class CarDiagnosticEngineTest {
     CarDiagnosticEngine carDiagnosticEngine = new CarDiagnosticEngine();
     Car car = carDiagnosticEngine.loadCarFromXml("SampleCar.xml");
     carDiagnosticEngine.executeDiagnostics(car);
+
     List<String> output = systemOutputRule.getOutputStringLines();
     assertThat(output, containsInAnyOrder(
             "Damaged Part Detected: ENGINE - Condition: USED",
@@ -37,29 +38,32 @@ public class CarDiagnosticEngineTest {
 
   @Test
   public void testExecuteDiagnostics_withCarWithMissingIdentity() {
-
-    CarDiagnosticEngine carDiagnosticEngine = new CarDiagnosticEngine();
     Car car = new Car();
     car.setMake("make");
-    car.setYear("year");
+    
+    CarDiagnosticEngine carDiagnosticEngine = new CarDiagnosticEngine();
     carDiagnosticEngine.executeDiagnostics(car);
+
     List<String> output = systemOutputRule.getOutputStringLines();
-    assertThat(output, containsInAnyOrder("Missing Identity(s) Detected: model"
+    assertThat(output, containsInAnyOrder("Missing Identity(s) Detected: model",
+            "Missing Identity(s) Detected: year"
     ));
   }
 
   @Test
   public void testExecuteDiagnostics_withCarWithMissingParts() {
-    CarDiagnosticEngine carDiagnosticEngine = new CarDiagnosticEngine();
+    List<Part> parts = new ArrayList<>(testSupport.newTires(ConditionType.GOOD, ConditionType.NEW));
+    parts.add(testSupport.newPart(PartType.ENGINE, ConditionType.GOOD));
+
     Car car = new Car();
     car.setMake("make");
     car.setModel("model");
     car.setYear("year");
-
-    List<Part> parts = new ArrayList<>(testSupport.newTires(ConditionType.GOOD, ConditionType.NEW));
-    parts.add(testSupport.newPart(PartType.ENGINE, ConditionType.GOOD));
     car.setParts(parts);
+
+    CarDiagnosticEngine carDiagnosticEngine = new CarDiagnosticEngine();
     carDiagnosticEngine.executeDiagnostics(car);
+
     List<String> output = systemOutputRule.getOutputStringLines();
     assertThat(output, containsInAnyOrder(
             "Missing Part(s) Detected: OIL_FILTER - Count: 1",
