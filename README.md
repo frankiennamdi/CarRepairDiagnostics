@@ -13,7 +13,7 @@ We anticiapte this will take approximately 20 minutes if tools are already insta
 
 ### build
 
-` ./mvnw clean install`
+` ./mvnw clean package`
 
 ### run
 
