@@ -8,8 +8,10 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.Matchers.containsInAnyOrder;
 import static org.junit.Assert.assertThat;
 
 public class CarDamagedPartsTest {
@@ -24,13 +26,15 @@ public class CarDamagedPartsTest {
     car.setYear("year");
 
     List<Part> parts = new ArrayList<>(testSupport.newTires(ConditionType.FLAT, ConditionType.NEW));
-    parts.add(testSupport.newPart(PartType.ENGINE, ConditionType.GOOD));
+    parts.add(testSupport.newPart(PartType.ENGINE, ConditionType.NO_POWER));
     car.setParts(parts);
 
     List<Part> damagedParts = car.getDamagedParts();
-    assertThat(damagedParts.size(), is(1));
-    assertThat(damagedParts.get(0).getType(), is(PartType.TIRE));
-    assertThat(damagedParts.get(0).getCondition(), is(ConditionType.FLAT));
+    assertThat(damagedParts.size(), is(2));
+    assertThat(damagedParts.stream().map(Part::getType).collect(Collectors.toList()),
+            containsInAnyOrder(PartType.TIRE, PartType.ENGINE));
+    assertThat(damagedParts.stream().map(Part::getCondition).collect(Collectors.toList()),
+            containsInAnyOrder(ConditionType.FLAT, ConditionType.NO_POWER));
   }
 
   @Test
