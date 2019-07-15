@@ -19,7 +19,13 @@ We anticiapte this will take approximately 20 minutes if tools are already insta
 
 `java -cp target/CarRepairDiagnostics-1.0-SNAPSHOT.jar com.ubiquisoft.evaluation.CarDiagnosticEngine`
 
+### Edge Cases
 
+* Application did not handle cases where the parts are greater than the required.
+That is treated as normal case.
+
+### Test
+100 % Class , 88% Method, 91% Line
 
 ## Basic Instructions
 
