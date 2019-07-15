@@ -19,23 +19,12 @@ public class Car {
 
   private List<Part> parts;
 
-  private final Map<PartType, Integer> requiredCarPartsCount;
-
-  public Car() {
-    requiredCarPartsCount = new HashMap<>();
-    requiredCarPartsCount.put(PartType.ENGINE, 1);
-    requiredCarPartsCount.put(PartType.ELECTRICAL, 1);
-    requiredCarPartsCount.put(PartType.FUEL_FILTER, 1);
-    requiredCarPartsCount.put(PartType.OIL_FILTER, 1);
-    requiredCarPartsCount.put(PartType.TIRE, 4);
-  }
-
   public List<Part> getDamagedParts() {
     return getParts().stream().filter(part -> !part.isInWorkingCondition()).collect(Collectors.toList());
   }
 
   public Map<PartType, Integer> getMissingPartsMap() {
-
+    Map<PartType, Integer> requiredCarPartsCount = requiredCarPartsCountMap();
     if (getParts().isEmpty()) {
 
       return requiredCarPartsCount;
@@ -88,6 +77,16 @@ public class Car {
 
   private boolean isNullOrEmpty(String value) {
     return value == null || value.isEmpty();
+  }
+
+  private Map<PartType, Integer> requiredCarPartsCountMap() {
+    Map<PartType, Integer> requiredCarPartsCount = new HashMap<>();
+    requiredCarPartsCount.put(PartType.ENGINE, 1);
+    requiredCarPartsCount.put(PartType.ELECTRICAL, 1);
+    requiredCarPartsCount.put(PartType.FUEL_FILTER, 1);
+    requiredCarPartsCount.put(PartType.OIL_FILTER, 1);
+    requiredCarPartsCount.put(PartType.TIRE, 4);
+    return requiredCarPartsCount;
   }
 
   @Override
